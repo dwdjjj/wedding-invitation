@@ -2,7 +2,11 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-export default function Map({ lat = 37.450701, lng = 126.570667 }) {
+export default function Map({
+  address = "인천",
+  defaultLat = 37.450701,
+  defaultLng = 126.570667,
+}) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -13,19 +17,40 @@ export default function Map({ lat = 37.450701, lng = 126.570667 }) {
 
     // SDK 내부 로드가 끝난 시점의 콜백
     window.kakao.maps.load(() => {
-      const { maps } = window.kakao;
+      const kakao = window.kakao;
+      const maps = kakao.maps;
       const container = ref.current;
-      const options = {
-        center: new maps.LatLng(lat, lng),
-        level: 3,
-      };
-      const map = new maps.Map(container, options);
-      new maps.Marker({
-        position: new maps.LatLng(lat, lng),
-        map,
+      if (!container) {
+        console.error("container 없음.");
+        return;
+      }
+
+      // 주소를 좌표로 변환
+      const geocoder = new maps.services.Geocoder();
+      geocoder.addressSearch(address, (result, status) => {
+        let centerLatLng;
+        if (status === maps.services.Status.OK && result[0]) {
+          const { y: lat, x: lng } = result[0];
+          centerLatLng = new maps.LatLng(lat, lng);
+        } else {
+          console.warn("주소 검색 실패, 기본 좌표 사용:", status);
+          centerLatLng = new maps.LatLng(defaultLat, defaultLng);
+        }
+
+        // 지도 생성
+        const map = new maps.Map(container, {
+          center: centerLatLng,
+          level: 3,
+        });
+
+        // 마커 생성
+        new maps.Marker({
+          position: centerLatLng,
+          map,
+        });
       });
     });
-  }, [lat, lng]);
+  }, [address, defaultLat, defaultLng]);
 
   return <div ref={ref} className="w-full h-64 bg-gray-200" />;
 }

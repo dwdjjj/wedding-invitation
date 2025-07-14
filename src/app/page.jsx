@@ -14,7 +14,7 @@ export default function Home() {
       <Gallery />
       <Calendar />
       <Guestbook />
-      <MapClient lat={37.450701} lng={126.570667} />
+      <MapClient />
 
       <ShareButtons />
     </div>
