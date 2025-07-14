@@ -52,5 +52,5 @@ export default function Map({
     });
   }, [address, defaultLat, defaultLng]);
 
-  return <div ref={ref} className="w-full h-64 bg-gray-200" />;
+  return <div ref={ref} className="w-full max-w-md h-64 bg-gray-200 mx-auto" />;
 }

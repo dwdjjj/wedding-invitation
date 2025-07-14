@@ -64,32 +64,27 @@ export default function Guestbook() {
         placeholder="축하 메시지를 남겨주세요."
         className="w-full p-2 rounded border border-gray-300 mb-2"
       />
-      <button
-        onClick={handleRegister}
-        className="w-full py-1 bg-blue-600 text-white rounded"
-      >
+      <button onClick={handleRegister} className="w-full btn-primary">
         등록하기
       </button>
 
       <ul className="mt-6 space-y-4">
         {entries.map(({ id, name, message, timestamp, password }) => (
-          <li
-            key={id}
-            className="p-4 bg-white/80 rounded flex justify-between items-start"
-          >
-            <div>
-              <div className="flex justify-between text-sm text-gray-600 mb-1">
-                <span>{name}</span>
+          <li key={id} className="p-4 bg-white/80 rounded space-y-2">
+            <div className="flex items-center justify-between text-sm text-gray-600">
+              <span className="font-bold">{name}</span>
+              <div className="flex items-center space-x-4">
                 <span>{timestamp}</span>
+                <button
+                  onClick={() => handleDelete(id, password)}
+                  className="text-red-500 hover:underline"
+                >
+                  삭제
+                </button>
               </div>
-              <p>{message}</p>
             </div>
-            <button
-              onClick={() => handleDelete(id, password)}
-              className="text-red-500 ml-4"
-            >
-              삭제
-            </button>
+
+            <p className="text-gray-800">{message}</p>
           </li>
         ))}
       </ul>
