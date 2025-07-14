@@ -1,28 +1,139 @@
 "use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Thumbs } from "swiper/modules";
+
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+import photo1 from "../images/photo1.jpg";
+import photo2 from "../images/photo2.jpg";
+import photo3 from "../images/photo3.jpg";
+import photo4 from "../images/photo2.jpg";
 
 export default function Gallery() {
-  const images = [
-    "/images/photo1.jpg",
-    "/images/photo2.jpg",
-    "/images/photo3.jpg",
-  ];
+  const images = [photo1, photo2, photo3, photo4];
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [mainSwiper, setMainSwiper] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [current, setCurrent] = useState(0);
+
+  const handlePrev = () => {
+    const prevIndex = (current + images.length - 1) % images.length;
+    setCurrent(prevIndex);
+    mainSwiper?.slideToLoop(prevIndex);
+  };
+
+  const handleNext = () => {
+    const nextIndex = (current + 1) % images.length;
+    setCurrent(nextIndex);
+    mainSwiper?.slideToLoop(nextIndex);
+  };
 
   return (
-    <div className="w-full">
-      <h2 className="text-center text-lg font-semibold mb-2">📷 웨딩 갤러리</h2>
-      <Swiper spaceBetween={10} slidesPerView={1}>
-        {images.map((src, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={src}
-              alt={`Wedding ${index}`}
-              className="rounded-lg w-full"
-            />
+    <section className="w-full max-w-md mx-auto py-8">
+      <h2 className="text-center text-xl font-semibold mb-4">📷 웨딩 갤러리</h2>
+
+      {/* 메인 슬라이드 */}
+      <Swiper
+        modules={[Navigation, Thumbs]}
+        spaceBetween={10}
+        navigation
+        thumbs={{ swiper: thumbsSwiper }}
+        loop={true}
+        onSwiper={setMainSwiper}
+        onSlideChange={(swiper) => setCurrent(swiper.realIndex)}
+        className="mb-4"
+      >
+        {images.map((img, i) => (
+          <SwiperSlide key={i}>
+            <div
+              className="relative w-full h-64 cursor-zoom-in"
+              onClick={() => {
+                setCurrent(i);
+                setIsOpen(true);
+              }}
+            >
+              <Image
+                src={img}
+                alt={`Gallery ${i}`}
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+
+      {/* 썸네일 슬라이드 */}
+      <Swiper
+        modules={[Thumbs]}
+        onSwiper={setThumbsSwiper}
+        spaceBetween={8}
+        slidesPerView={images.length}
+        freeMode
+        watchSlidesProgress
+        loop={true}
+        className="mx-auto max-w-xl"
+      >
+        {images.map((img, i) => (
+          <SwiperSlide
+            key={i}
+            className="opacity-60 hover:opacity-100 cursor-pointer"
+          >
+            <div className="relative w-24 h-24">
+              <Image
+                src={img}
+                alt={`Thumbnail ${i}`}
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Tailwind 모달 (클릭 시 확대 + 네비게이션) */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4">
+          {/* 닫기 버튼 */}
+          <button
+            className="absolute top-4 right-4 text-white text-3xl"
+            onClick={() => setIsOpen(false)}
+          >
+            &times;
+          </button>
+
+          {/* 이전 버튼 */}
+          <button
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+            onClick={handlePrev}
+          >
+            &#8592;
+          </button>
+
+          {/* 다음 버튼 */}
+          <button
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+            onClick={handleNext}
+          >
+            &#8594;
+          </button>
+
+          {/* 확대 이미지 */}
+          <div className="relative w-full max-w-3xl max-h-full">
+            <Image
+              src={images[current].src}
+              alt={`Enlarged ${current}`}
+              fill
+              className="object-contain rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
