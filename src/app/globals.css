@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #bdbdbdc5;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #444444;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0; /* 기본 여백 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  width: 500px;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+}
+
+@layer components {
+  .flexcenter {
+    @apply flex items-center justify-center;
+  }
+  .margincenter {
+    @apply mx-auto my-0;
+  }
+  .flexwrap {
+    @apply flex flex-wrap;
+  }
+}
