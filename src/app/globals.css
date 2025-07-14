@@ -32,9 +32,3 @@ body {
 .guestbook-entry {
   @apply bg-white/50 rounded-md shadow-none;
 }
-
-/* 기타 커스텀 */
-.text-fancy {
-  font-family: "Pretendard", sans-serif;
-  letter-spacing: 0.05em;
-}
