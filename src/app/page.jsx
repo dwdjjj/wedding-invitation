@@ -8,7 +8,7 @@ import MapClient from "@/components/MapClient";
 
 export default function Home() {
   return (
-    <div className="flexcenter flex-col min-h-screen w-full text-center p-6">
+    <div className="main-container flexcenter flex-col text-center">
       <Header />
       <Contact />
       <Gallery />

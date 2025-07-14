@@ -2,46 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #bdbdbdc5;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #444444;
-  }
-}
-
 html,
 body {
   height: 100%;
-  margin: 0; /* 기본 여백 제거 */
-  padding: 0; /* 기본 패딩 제거 */
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-main {
-  width: 500px;
-  @media (max-width: 500px) {
-    width: 100%;
-  }
+/* 메인 컨테이너: 투명 배경, 패딩 제거 */
+.main-container {
+  @apply w-full min-h-screen p-0 bg-transparent;
 }
 
 @layer components {
-  .flexcenter {
-    @apply flex items-center justify-center;
+  .page-main {
+    @apply w-full max-w-2xl mx-auto;
   }
-  .margincenter {
-    @apply mx-auto my-0;
-  }
-  .flexwrap {
-    @apply flex flex-wrap;
-  }
+}
+
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded;
+}
+
+/* 방명록 카드 오버레이 투명도 조정 */
+.guestbook-entry {
+  @apply bg-white/50 rounded-md shadow-none;
+}
+
+/* 기타 커스텀 */
+.text-fancy {
+  font-family: "Pretendard", sans-serif;
+  letter-spacing: 0.05em;
 }

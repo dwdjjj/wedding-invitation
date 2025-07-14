@@ -1,6 +1,5 @@
 import "./globals.css";
 import Script from "next/script";
-import photo2 from "../images/photo2.jpg"; // 이미지 임포트
 
 export const metadata = {
   title: "청첩장",
@@ -27,9 +26,9 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body className="h-full flexcenter flex-col text-white antialiased ">
+      <body className="main-container flexcenter flex-col antialiased ">
         <main
-          className="flex-1 flex flex-col w-full h-full max-w-2xl p-6  border-gray-400 border-2 rounded-lg text-center bg-cover"
+          className="page-main p-6 text-center bg-cover"
           style={{
             backgroundImage: `url('https://deardeer.kr/uploads/product-detail/images/2018/03/27/thumb3_img_36cba51bf048922fac01_cp.png')`,
           }}
