@@ -9,13 +9,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-import photo1 from "../images/photo1.jpg";
-import photo2 from "../images/photo2.jpg";
-import photo3 from "../images/photo3.jpg";
-import photo4 from "../images/photo2.jpg";
+import photo0 from "../images/photo0.jpg";
+import photo00 from "../images/photo00.jpg";
+import photo1 from "../images/photo1.png";
+import photo2 from "../images/photo2.png";
+import photo3 from "../images/photo3.png";
 
 export default function Gallery() {
-  const images = [photo1, photo2, photo3, photo4];
+  const images = [photo0, photo00, photo1, photo2, photo3];
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [mainSwiper, setMainSwiper] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -70,13 +71,14 @@ export default function Gallery() {
 
       {/* 썸네일 슬라이드 */}
       <Swiper
-        modules={[Thumbs]}
+        modules={[Navigation, Thumbs]}
         onSwiper={setThumbsSwiper}
         spaceBetween={8}
-        slidesPerView={images.length}
+        slidesPerView={4}
+        navigation
+        loop
         freeMode
         watchSlidesProgress
-        loop={true}
         className="mx-auto max-w-xl"
       >
         {images.map((img, i) => (
@@ -125,11 +127,10 @@ export default function Gallery() {
 
           {/* 확대 이미지 */}
           <div className="relative w-full max-w-3xl max-h-full">
-            <Image
+            <img
               src={images[current].src}
               alt={`Enlarged ${current}`}
-              fill
-              className="object-contain rounded-lg"
+              className="w-full h-full object-contain rounded-lg"
             />
           </div>
         </div>

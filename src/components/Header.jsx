@@ -1,5 +1,5 @@
 import Image from "next/image";
-import photo1 from "../images/photo1.jpg"; // 이미지 임포트
+import photo1 from "../images/photo0.jpg"; // 이미지 임포트
 
 export default function Header() {
   return (

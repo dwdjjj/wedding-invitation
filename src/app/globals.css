@@ -32,3 +32,16 @@ body {
 .guestbook-entry {
   @apply bg-white/50 rounded-md shadow-none;
 }
+
+@layer components {
+  /* Swiper 기본 화살표 덮어쓰기 */
+  .swiper-button-prev,
+  .swiper-button-next {
+    @apply bg-white bg-opacity-75 text-black p-2 rounded-full;
+  }
+  /* Hover 시 반전 */
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    @apply bg-black bg-opacity-75 text-white;
+  }
+}
