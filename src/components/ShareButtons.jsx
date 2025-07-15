@@ -37,7 +37,7 @@ export default function ShareButtons() {
   };
 
   return (
-    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4">
+    <div className="w-full mt-8 flex justify-center space-x-4">
       <button
         onClick={shareKakao}
         className="bg-yellow-500 px-4 py-2 rounded text-white"

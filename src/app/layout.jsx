@@ -29,8 +29,11 @@ export default function RootLayout({ children }) {
       <body className="main-container flexcenter flex-col antialiased ">
         <main
           className="page-main p-6 text-center bg-cover"
+          // style={{
+          //   backgroundImage: `url('https://deardeer.kr/uploads/product-detail/images/2018/03/27/thumb3_img_36cba51bf048922fac01_cp.png')`,
+          // }}
           style={{
-            backgroundImage: `url('https://deardeer.kr/uploads/product-detail/images/2018/03/27/thumb3_img_36cba51bf048922fac01_cp.png')`,
+            border: "1px solid #eaeaea",
           }}
         >
           {children}
