@@ -1,8 +1,7 @@
-// components/SectionEffect.jsx
 "use client";
 import { useRef, useEffect } from "react";
 
-export default function EffectsManager({ children, onEnter, threshold = 0.3 }) {
+export default function SectionEffect({ children, onEnter, threshold = 0.3 }) {
   const ref = useRef(null);
 
   useEffect(() => {

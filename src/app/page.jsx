@@ -7,24 +7,20 @@ import ShareButtons from "@/components/ShareButtons";
 import Header from "@/components/Header";
 import MapClient from "@/components/MapClient";
 import SectionEffect from "@/effects/SectionEffect";
-import {
-  playBouquet,
-  playHeartBurst,
-  playFlowerRain,
-} from "../effects/effects";
+import { playWeddingHearts, playFlowerRain } from "@/effects/effects";
 
 export default function Home() {
   return (
     <div className="main-container flexcenter flex-col text-center">
-      <SectionEffect onEnter={() => playBouquet(50)} threshold={0.5}>
+      <SectionEffect onEnter={() => playFlowerRain(50)} threshold={0.5}>
         <Header />
       </SectionEffect>
       <Contact />
-      <SectionEffect onEnter={() => playHeartBurst(40)} threshold={1}>
-        <Gallery />
-      </SectionEffect>
+
+      <Gallery />
+
       <Calendar />
-      <SectionEffect onEnter={() => playFlowerRain(60)} threshold={1}>
+      <SectionEffect onEnter={() => playWeddingHearts(60)} threshold={1}>
         <Guestbook />
       </SectionEffect>
       <MapClient />
