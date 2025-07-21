@@ -33,15 +33,24 @@ body {
   @apply bg-white/50 rounded-md shadow-none;
 }
 
-@layer components {
-  /* Swiper 기본 화살표 덮어쓰기 */
-  .swiper-button-prev,
-  .swiper-button-next {
-    @apply bg-white bg-opacity-75 text-black p-2 rounded-full;
-  }
-  /* Hover 시 반전 */
-  .swiper-button-prev:hover,
-  .swiper-button-next:hover {
-    @apply bg-black bg-opacity-75 text-white;
-  }
+.swiper-button-next,
+.swiper-button-prev {
+  --swiper-navigation-size: 20px !important; /* Swiper 내부 변수 재정의 */
+  width: 28px !important;
+  height: 28px !important;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  z-index: 50;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px !important;
+  color: #444;
+  font-weight: bold;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }

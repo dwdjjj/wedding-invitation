@@ -102,14 +102,10 @@ export default function Gallery() {
 
       {/* Tailwind 모달 (클릭 시 확대 + 네비게이션) */}
       {isOpen && (
-        <div
-          className={cn(
-            "fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4"
-          )}
-        >
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4">
           {/* 닫기 버튼 */}
           <button
-            className={cn("absolute top-4 right-4 text-white text-3xl")}
+            className="absolute top-4 right-4 text-white text-3xl"
             onClick={() => setIsOpen(false)}
           >
             &times;
@@ -117,9 +113,7 @@ export default function Gallery() {
 
           {/* 이전 버튼 */}
           <button
-            className={cn(
-              "absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
-            )}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
             onClick={handlePrev}
           >
             &#8592;
@@ -127,20 +121,18 @@ export default function Gallery() {
 
           {/* 다음 버튼 */}
           <button
-            className={cn(
-              "absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
-            )}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
             onClick={handleNext}
           >
             &#8594;
           </button>
 
           {/* 확대 이미지 */}
-          <div className={cn("relative w-full max-w-3xl max-h-full")}>
+          <div className="relative w-full max-w-3xl max-h-full">
             <img
               src={images[current].src}
               alt={`Enlarged ${current}`}
-              className={cn("w-full h-full object-contain rounded-lg")}
+              className="w-full h-full object-contain rounded-lg"
             />
           </div>
         </div>
