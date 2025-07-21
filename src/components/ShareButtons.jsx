@@ -1,5 +1,7 @@
 "use client";
 import { useEffect } from "react";
+import { cn } from "@/utils/cn";
+import { Button } from "@/components/ui/Button";
 
 export default function ShareButtons() {
   const APP_KEY = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
@@ -37,14 +39,14 @@ export default function ShareButtons() {
   };
 
   return (
-    <div className="w-full mt-8 flex justify-center space-x-4">
-      <button
+    <div className={cn("w-full mt-8 flex justify-center space-x-4")}>
+      <Button
         onClick={shareKakao}
-        className="bg-yellow-500 px-4 py-2 rounded text-white"
+        variant="primary"
+        className={cn("bg-yellow-500 hover:bg-yellow-600")}
       >
         카카오톡 공유하기
-      </button>
-      {/* 필요 시 페북, 네이버 공유도 추가 */}
+      </Button>
     </div>
   );
 }

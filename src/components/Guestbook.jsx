@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Button } from "@/components/ui/Button";
 
 export default function Guestbook() {
   const [entries, setEntries] = useState([]);
@@ -64,9 +65,9 @@ export default function Guestbook() {
         placeholder="축하 메시지를 남겨주세요."
         className="w-full p-2 rounded border border-gray-300 mb-2"
       />
-      <button onClick={handleRegister} className="w-full btn-primary">
+      <Button onClick={handleRegister} className="w-full">
         등록하기
-      </button>
+      </Button>
 
       <ul className="mt-6 space-y-4">
         {entries.map(({ id, name, message, timestamp, password }) => (
@@ -74,13 +75,14 @@ export default function Guestbook() {
             <div className="flex items-center justify-between text-sm text-gray-600">
               <span className="font-bold">{name}</span>
               <div className="flex items-center space-x-4">
-                <span>{timestamp}</span>
-                <button
+                <span>{timestamp}</span>+
+                <Button
                   onClick={() => handleDelete(id, password)}
-                  className="text-red-500 hover:underline"
+                  variant="danger"
+                  size="sm"
                 >
                   삭제
-                </button>
+                </Button>
               </div>
             </div>
 

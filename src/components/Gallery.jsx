@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
+import { cn } from "@/utils/cn";
+import { Section } from "@/components/ui/Section";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -35,8 +37,8 @@ export default function Gallery() {
   };
 
   return (
-    <section className="w-full max-w-md mx-auto py-8">
-      <h2 className="text-center text-xl font-semibold mb-4">📷 웨딩 갤러리</h2>
+    <Section>
+      <h2 className={cn("text-xl font-semibold", "mb-4")}>📷 웨딩 갤러리</h2>
 
       {/* 메인 슬라이드 */}
       <Swiper
@@ -52,7 +54,7 @@ export default function Gallery() {
         {images.map((img, i) => (
           <SwiperSlide key={i}>
             <div
-              className="relative w-full h-64 cursor-zoom-in"
+              className={cn("relative w-full h-64 cursor-zoom-in")}
               onClick={() => {
                 setCurrent(i);
                 setIsOpen(true);
@@ -62,7 +64,7 @@ export default function Gallery() {
                 src={img}
                 alt={`Gallery ${i}`}
                 fill
-                className="object-cover rounded-lg"
+                className={cn("object-cover rounded-lg")}
               />
             </div>
           </SwiperSlide>
@@ -84,14 +86,14 @@ export default function Gallery() {
         {images.map((img, i) => (
           <SwiperSlide
             key={i}
-            className="opacity-60 hover:opacity-100 cursor-pointer"
+            className={cn("opacity-60 hover:opacity-100 cursor-pointer")}
           >
-            <div className="relative w-24 h-24">
+            <div className={cn("relative w-24 h-24")}>
               <Image
                 src={img}
                 alt={`Thumbnail ${i}`}
                 fill
-                className="object-cover rounded-lg"
+                className={cn("object-cover rounded-lg")}
               />
             </div>
           </SwiperSlide>
@@ -100,10 +102,14 @@ export default function Gallery() {
 
       {/* Tailwind 모달 (클릭 시 확대 + 네비게이션) */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4">
+        <div
+          className={cn(
+            "fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4"
+          )}
+        >
           {/* 닫기 버튼 */}
           <button
-            className="absolute top-4 right-4 text-white text-3xl"
+            className={cn("absolute top-4 right-4 text-white text-3xl")}
             onClick={() => setIsOpen(false)}
           >
             &times;
@@ -111,7 +117,9 @@ export default function Gallery() {
 
           {/* 이전 버튼 */}
           <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+            className={cn(
+              "absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+            )}
             onClick={handlePrev}
           >
             &#8592;
@@ -119,22 +127,24 @@ export default function Gallery() {
 
           {/* 다음 버튼 */}
           <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+            className={cn(
+              "absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+            )}
             onClick={handleNext}
           >
             &#8594;
           </button>
 
           {/* 확대 이미지 */}
-          <div className="relative w-full max-w-3xl max-h-full">
+          <div className={cn("relative w-full max-w-3xl max-h-full")}>
             <img
               src={images[current].src}
               alt={`Enlarged ${current}`}
-              className="w-full h-full object-contain rounded-lg"
+              className={cn("w-full h-full object-contain rounded-lg")}
             />
           </div>
         </div>
       )}
-    </section>
+    </Section>
   );
 }
