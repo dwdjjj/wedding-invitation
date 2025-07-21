@@ -54,3 +54,12 @@ body {
 .swiper-button-next:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.mojs-shape,
+.mojs-shape path {
+  all: unset;
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+}
